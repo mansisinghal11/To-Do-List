@@ -71,9 +71,9 @@ app.get("/", function(req,res){
 
 });
 
-app.get("/about", function(req,res){
-  res.render("about");
-});
+// app.get("/about", function(req,res){
+//   res.render("about");
+// });
 
 app.get("/:customListName", function(req,res){
   const customListName = _.capitalize(req.params.customListName);

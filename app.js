@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin-mansi:mansiji2001@cluster0.jpuhx.mongodb.net/todolistDB?retryWrites=true&w=majority", {useNewUrlParser: true});
 
 const itemsSchema = {
   name: String
@@ -71,9 +71,9 @@ app.get("/", function(req,res){
 
 });
 
-// app.get("/about", function(req,res){
-//   res.render("about");
-// });
+app.get("/about", function(req,res){
+  res.render("about");
+});
 
 app.get("/:customListName", function(req,res){
   const customListName = _.capitalize(req.params.customListName);
@@ -137,14 +137,6 @@ app.post("/delete", function(req,res){
   }
 
 });
-
-app.post("/work", function(req,res){
-  let item = req.body.newItem;
-  workItems.push(item);
-  res.redirect("/work");
-});
-
-
 
 app.listen(process.env.PORT ||3000, function(){
   console.log("Server is running on port 3000");
